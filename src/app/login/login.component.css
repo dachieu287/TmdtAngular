@@ -1,0 +1,38 @@
+.box {
+  width: 500px;
+  border: black 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0 #999;
+  margin: 30px auto;
+}
+
+.input-group:first-child {
+  padding-top: 30px;
+}
+
+.input-group-prepend {
+  padding-top: 10px;
+  margin: auto;
+}
+
+button {
+  width: 40%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+a {
+  margin: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.show button {
+   /* position: relative; */
+  margin: 0;
+  padding: 0px;
+}
+
+.show {
+  margin-top: 5px;
+}

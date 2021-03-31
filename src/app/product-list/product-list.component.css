@@ -1,0 +1,21 @@
+.card {
+  width: 300px;
+  margin-top: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0 #999;
+}
+
+.card-img-top {
+  margin-top: 15px;
+  width: 200px;
+  transition: all 0.5s linear;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+}
+
+.card-body p {
+  color: coral;
+  font-weight: bolder;
+}

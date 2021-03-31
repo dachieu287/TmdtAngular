@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="alert alert-success" *ngIf="isSuccess">
+    <strong>Thành công!</strong> Tài khoản của bạn đã được tạo; đăng nhập để tiếp tục.
+  </div>
+
+  <form class="box" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
+        <input type="text" class="form-control" placeholder="Tên tài khoản" formControlName="username">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+      <div *ngIf="username.errors.required">Tên tài khoản không được bỏ trống</div>
+      <div *ngIf="username.errors.minlength">Tên tài khoản phải ít nhất 4 ký tự</div>
+      <div *ngIf="username.errors.usernameExists">Tên tài khoản đã tồn tại</div>
+    </div>
+    
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
+        <input type="password" class="form-control" placeholder="Mật khẩu" formControlName="password">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required">Mật khẩu không được bỏ trống</div>
+      <div *ngIf="password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faRedo"></fa-icon></span>
+        <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" formControlName="repassword">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)">
+      <div *ngIf="repassword.errors.notSame">Mật khẩu không khớp</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faUserTie"></fa-icon></span>
+        <input type="text" class="form-control" placeholder="Tên" formControlName="name">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors.required">Không được bỏ trống</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faEnvelope"></fa-icon></span>
+        <input type="email" class="form-control" placeholder="Email" formControlName="email">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">Không được bỏ trống</div>
+      <div *ngIf="email.errors.email">Email không hợp lệ</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faPhone"></fa-icon></span>
+        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" formControlName="phone">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+      <div *ngIf="phone.errors.required">Không được bỏ trống</div>
+      <div *ngIf="phone.errors.pattern">Số điện thoại không hợp lệ</div>
+    </div>
+
+    <div class="input-group">
+      <button type="submit" class="btn btn-success" [disabled]="!form.valid">Đăng kí</button>
+    </div>
+    
+    <div class="input-group">
+      <a routerLink="/login">Đăng nhập</a>
+    </div>
+    
+  </form>
+</div>
