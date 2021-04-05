@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
-import { TokenStorageService } from '../_services/token-storage.service';
+import { Cart } from '../_models/cart';
+import { AuthenticationService } from '../_services/authentication.service';
+import { CartService } from '../_services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,17 +17,32 @@ export class HeaderComponent implements OnInit {
   username: string;
   isLogin = false;
 
+  carts: Cart[] = [];
+  cartCount = 0;
+  cartTotalPrice = 0;
+
   constructor(
-    private tokenStorage: TokenStorageService
+    private authService: AuthenticationService,
+    private cartServie: CartService
   ) { }
 
   ngOnInit(): void {
-    this.isLogin = this.tokenStorage.getToken() != null;
-    this.username = this.isLogin ? this.tokenStorage.getUsername() : '-';
+    this.isLogin = this.authService.isLogin();
+    this.username = this.authService.getUsername();
+
+    this.cartServie.currentCart.subscribe(data => {
+      this.carts = data;
+      this.cartCount = 0;
+      this.cartTotalPrice = 0;
+      this.carts.forEach(element => {
+        this.cartCount += element.quantity;
+        this.cartTotalPrice += element.quantity * element.product.price;
+      });
+    });
   }
 
   logout(): void {
-    this.tokenStorage.logout();
+    this.authService.logout();
     window.location.replace('/');
   }
 }

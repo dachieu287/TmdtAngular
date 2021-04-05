@@ -2,10 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { debounceTime, map, delay } from 'rxjs/internal/operators';
+import { map, delay } from 'rxjs/internal/operators';
+import { API_URL } from '../_helpers/url-api';
+import { TokenStorageService } from './token-storage.service';
 
 
-const AUTH_API = "https://localhost:44355/api/Authenticate/";
+const AUTH_API = API_URL + "api/Authenticate/";
 
 
 @Injectable({
@@ -14,7 +16,8 @@ const AUTH_API = "https://localhost:44355/api/Authenticate/";
 export class AuthenticationService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenStorage: TokenStorageService
   ) { }
 
   login(username: string, password: string) : Observable<any> {
@@ -34,6 +37,10 @@ export class AuthenticationService {
     });
   }
 
+  logout(): void {
+    this.tokenStorage.logout();
+  }
+
   checkUsernameExists(username): Observable<boolean> {
     return this.http.post<boolean>(AUTH_API + 'checkUsernameExists', { username: username}).pipe(delay(1000));
   }
@@ -46,5 +53,13 @@ export class AuthenticationService {
         })
       );
     };
+  }
+
+  isLogin(): boolean {
+    return this.tokenStorage.getToken() !== null
+  }
+
+  getUsername(): string {
+    return this.tokenStorage.getUsername();
   }
 }

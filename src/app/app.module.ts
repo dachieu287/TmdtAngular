@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { LogupComponent } from './logup/logup.component';
 import { authInterceptorProvoders } from './_helpers/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     ProductListComponent,
     LoginComponent,
-    LogupComponent
+    LogupComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
