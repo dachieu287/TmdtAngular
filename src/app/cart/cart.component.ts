@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { API_URL } from '../_helpers/url-api';
 import { Cart } from '../_models/cart';
+import { AuthenticationService } from '../_services/authentication.service';
 import { CartService } from '../_services/cart.service';
 
 @Component({
@@ -14,11 +15,18 @@ export class CartComponent implements OnInit {
   cartCountItems = 0;
   cartTotalPrice = 0;
 
+  isLogin: boolean = false;
+
   constructor(
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    private authService: AuthenticationService
+  ) {
+    
+  }
 
   ngOnInit(): void {
+    this.isLogin = this.authService.isLogin();
+
     this.cartService.currentCart.subscribe(
       data => {
         this.carts = data;

@@ -6,7 +6,7 @@
 					<div class="col">
 						<h4><b>Giỏ hàng</b></h4>
 					</div>
-					<div class="col align-self-center text-right text-muted">3 vật phẩm</div>
+					<div class="col align-self-center text-right text-muted">{{ cartCountItems }} vật phẩm</div>
 				</div>	
 			</div>
 			<div class="row border-top" *ngFor="let item of carts">
@@ -50,7 +50,7 @@
 			<div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
 				<div class="col">TỔNG CỘNG</div>
 				<div class="col text-right">{{ cartTotalPrice | currency:'VND' }}</div>
-		</div> <button class="btn btn-dark">THANH TOÁN</button>
+		</div> <button class="btn btn-dark" [disabled]="!isLogin">THANH TOÁN</button>
 		</div>
 	</div>
 </div>

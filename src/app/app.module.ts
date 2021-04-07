@@ -14,6 +14,7 @@ import { LogupComponent } from './logup/logup.component';
 import { authInterceptorProvoders } from './_helpers/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CartComponent } from './cart/cart.component';
     ProductListComponent,
     LoginComponent,
     LogupComponent,
-    CartComponent
+    CartComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

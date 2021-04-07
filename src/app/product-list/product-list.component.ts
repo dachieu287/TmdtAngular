@@ -1,8 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { API_URL } from '../_helpers/url-api';
 import { Cart } from '../_models/cart';
 import { Product } from '../_models/product';
+import { AuthenticationService } from '../_services/authentication.service';
 import { CartService } from '../_services/cart.service';
 import { ProductService } from '../_services/product.service';
 
@@ -18,7 +18,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +34,11 @@ export class ProductListComponent implements OnInit {
 
 
   addToCart(productId: number, quantity: number = 1) : void {
+    if (!this.authService.isLogin()) {
+      alert("Vui lòng đăng nhập để bắt đầu mua hàng");
+      window.location.replace('/login');
+    }
+
     var cart: Cart = new Cart(productId, quantity, null);
     this.cartService.addToCart(cart).subscribe(
       data => {
