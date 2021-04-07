@@ -16,7 +16,6 @@ export class CartService {
   constructor(
     private http: HttpClient
   ) {
-    this.updateCart();
   }
 
   getCarts(): Observable<Cart[]> {

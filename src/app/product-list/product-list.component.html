@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4" *ngFor="let product of products">
-      <a class="card" [routerLink]="['/products', product.id]">
+      <div class="card">
         <div class="text-center">
           <img class="card-img-top" src="{{ url + product.imageUrl }}" alt="Card image">
         </div>        
         <div class="card-body">
-          <h4 class="card-title text-center">{{ product.name}}</h4>
+          <a [routerLink]="['/products', product.id]"><h4 class="card-title text-center">{{ product.name}}</h4></a>
           <p class="card-text text-center">{{ product.price | currency:'VND'}}</p>
           <div class="text-center">
             <a class="btn btn-dark" (click)="addToCart(product.id)">Thêm vào giỏ hàng</a>
           </div>      
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </div>

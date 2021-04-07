@@ -39,6 +39,10 @@ export class HeaderComponent implements OnInit {
         this.cartTotalPrice += element.quantity * element.product.price;
       });
     });
+
+    if (this.isLogin) {
+      this.cartServie.updateCart();
+    }
   }
 
   logout(): void {
