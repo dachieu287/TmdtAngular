@@ -36,10 +36,15 @@ export class CartService {
   }
 
   changeQuantity(productId: number, increment: boolean): Observable<any> {
-    return this.http.get(this.cartUrl + 'changeQuantity?' + 'productId=' + productId + '&increment=' + increment);
+    return this.http.get(this.cartUrl + 'changeQuantity', { params: {
+      productId: productId.toString(),
+      increment: increment.toString()
+    }});
   }
 
   deleteItem(productId: number): Observable<any> {
-    return this.http.delete(this.cartUrl + 'deleteItem?' + 'productId=' + productId);
+    return this.http.delete(this.cartUrl + 'deleteItem', { params: {
+      productId: productId.toString()
+    }});
   }
 }

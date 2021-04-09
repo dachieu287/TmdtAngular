@@ -15,6 +15,7 @@ import { authInterceptorProvoders } from './_helpers/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [authInterceptorProvoders],
   bootstrap: [AppComponent]

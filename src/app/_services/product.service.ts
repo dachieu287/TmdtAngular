@@ -15,8 +15,11 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productUrl);
+  getProducts(pageNumber: number, pageSize: number): Observable<any> {
+    return this.http.get<Product[]>(this.productUrl, { params: {
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    }});
   }
 
   getProduct(productId: number): Observable<Product> {

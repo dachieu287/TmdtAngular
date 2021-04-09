@@ -41,8 +41,10 @@ export class AuthenticationService {
     this.tokenStorage.logout();
   }
 
-  checkUsernameExists(username): Observable<boolean> {
-    return this.http.post<boolean>(AUTH_API + 'checkUsernameExists', { username: username}).pipe(delay(1000));
+  checkUsernameExists(username : string): Observable<boolean> {
+    return this.http.get<boolean>(AUTH_API + 'checkUsernameExists', { params: {
+      username: username
+    }}).pipe(delay(1000));
   }
 
   usernameValidator(): AsyncValidatorFn {

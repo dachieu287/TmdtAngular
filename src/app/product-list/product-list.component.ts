@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { API_URL } from '../_helpers/url-api';
 import { Cart } from '../_models/cart';
 import { Product } from '../_models/product';
@@ -27,8 +27,8 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.productService.getProducts()
-      .subscribe(product => this.products = product);
+    this.productService.getProducts(1, 2)
+      .subscribe(response => this.products = response.data);
   }
 
 
@@ -45,6 +45,6 @@ export class ProductListComponent implements OnInit {
         this.cartService.updateCart();
       }
     );
-    //alert('Đã thêm vào giỏ hàng'); 
+    alert('Đã thêm vào giỏ hàng'); 
   }
 }
