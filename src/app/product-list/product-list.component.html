@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4" *ngFor="let product of products">
+    <div class="col-md-4" *ngFor="let product of products | paginate: {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: totalItems
+    }">
       <div class="card">
         <div class="text-center">
           <img class="card-img-top" src="{{ url + product.imageUrl }}" alt="Card image">
@@ -15,7 +19,12 @@
       </div>
     </div>
   </div>
-  <div class="col-md-12">
-    <pagination-controls></pagination-controls>
+  <div class="col-md-12 mt-4">
+    <pagination-controls class="text-center"
+    previousLabel = ""
+    nextLabel = ""
+    [responsive] = "true"
+    (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
   </div>
 </div>
