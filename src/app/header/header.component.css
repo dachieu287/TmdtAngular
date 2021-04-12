@@ -53,6 +53,11 @@
   margin-top: -2px
 }
 
+.cart_name a {
+  color: #a3a3a3;
+}
+
+
 .navbar-nav .nav-item {
   margin-left: 20px;
 }

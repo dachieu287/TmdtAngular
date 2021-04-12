@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -16,17 +15,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchComponent } from './search/search.component';
+import { UserLayoutComponent } from './_layouts/user-layout/user-layout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent,
     ProductListComponent,
     LoginComponent,
     LogupComponent,
     CartComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SearchComponent,
+    UserLayoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

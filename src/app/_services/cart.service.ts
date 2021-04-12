@@ -10,8 +10,8 @@ import { Cart } from '../_models/cart';
 export class CartService {
   private cartUrl = API_URL + 'api/cart/';
 
-  private cartsSource = new BehaviorSubject<Cart[]>([]);
-  currentCart = this.cartsSource.asObservable();
+  private bsCarts = new BehaviorSubject<Cart[]>([]);
+  public Carts = this.bsCarts.asObservable();
 
   constructor(
     private http: HttpClient
@@ -30,7 +30,7 @@ export class CartService {
   updateCart() :void {
     this.getCarts().subscribe(
       data => {
-        this.cartsSource.next(data);
+        this.bsCarts.next(data);
       }
     ); 
   }

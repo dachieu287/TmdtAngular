@@ -19,7 +19,7 @@ export class ProductDetailComponent implements OnInit {
 
   url = API_URL;
   productId: number;
-  product: Product;
+  product: Product = null;
   quantity: number = 1;
 
   constructor(

@@ -8,7 +8,7 @@
       </div>
       <div class="col-lg-6">
         <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Tìm kiếm" aria-label="Search">
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Tìm kiếm" aria-label="Search" #search (keyup.enter)="searchProduct(search.value)">
         </form>
       </div>
       <div class="col-lg-3">
@@ -39,7 +39,7 @@
                           <a routerLink="/login"*ngIf="!isLogin">Đăng nhập</a>
                           <a routerLink="/" *ngIf="isLogin" (click)="logout()">Đăng xuất</a>
                         </div>
-                        <div class="cart_name">{{ username }}</div>
+                        <div class="cart_name"><a  routerLink="/profile">{{ username }}</a></div>
                     </div>
                 </div>
               </div>
@@ -50,15 +50,3 @@
     </div>     
   </nav>
 </header>
-
-<!-- <div class="bg-light">
-  <div class="container">
-    <nav class="nav nav-tabs nav-fill">
-      <a class="nav-item nav-link active" href="#">Option 0</a>
-      <a class="nav-item nav-link" href="#">Option 1</a>
-      <a class="nav-item nav-link" href="#">Option 2</a>
-      <a class="nav-item nav-link" href="#">Option 3</a>
-    </nav>
-  </div>
-</div> -->
-

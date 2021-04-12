@@ -1,0 +1,37 @@
+.box {
+  top: 0;
+  width: 500px;
+  border: black 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0 #999;
+  margin: auto;
+}
+
+.input-group:first-child {
+  padding-top: 3  0px;
+}
+
+.input-group-prepend {
+  padding-top: 10px;
+  margin: auto;
+}
+
+button {
+  width: 40%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+a {
+  margin: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.alert-danger {
+  width: 240px;
+  padding: 0;
+  padding-left: 5px;
+  margin: auto;
+  font-size: small;
+}

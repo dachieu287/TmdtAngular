@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.isLogin = this.authService.isLogin();
     this.username = this.authService.getUsername();
 
-    this.cartServie.currentCart.subscribe(data => {
+    this.cartServie.Carts.subscribe(data => {
       this.carts = data;
       this.cartCount = 0;
       this.cartTotalPrice = 0;
@@ -48,5 +48,13 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     window.location.replace('/');
+  }
+
+  searchProduct(value: string) {
+    value = value.trim();
+    if (!value) {
+      return;
+    }
+    window.location.replace('/search/' + value);
   }
 }

@@ -64,4 +64,16 @@ export class AuthenticationService {
   getUsername(): string {
     return this.tokenStorage.getUsername();
   }
+
+  getProfile(): Observable<any> {
+    return this.http.get(AUTH_API + 'getProfile');
+  }
+
+  updateProfile(name: string, email: string, phone: string): Observable<any> {
+    return this.http.post(AUTH_API + 'updateProfile', {
+      name: name,
+      email: email,
+      phone: phone
+    });
+  }
 }

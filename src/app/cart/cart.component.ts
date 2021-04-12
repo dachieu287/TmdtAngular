@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.isLogin = this.authService.isLogin();
 
-    this.cartService.currentCart.subscribe(
+    this.cartService.Carts.subscribe(
       data => {
         this.carts = data;
         this.cartCountItems = 0;

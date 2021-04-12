@@ -25,4 +25,12 @@ export class ProductService {
   getProduct(productId: number): Observable<Product> {
     return this.http.get<Product>(this.productUrl + '/' + productId);
   }
+
+  searchProducts(search: string, pageNumber: number, pageSize: number): Observable<any> {
+    return this.http.get<Product[]>(this.productUrl, { params: {
+      search: search,
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    }});
+  }
 }
