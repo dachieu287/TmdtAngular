@@ -5,19 +5,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HeaderComponent } from './header/header.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './login/login.component';
-import { LogupComponent } from './logup/logup.component';
-import { authInterceptorProvoders } from './_helpers/auth.interceptor';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CartComponent } from './cart/cart.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { SearchComponent } from './search/search.component';
+import { HeaderComponent } from './_components/header/header.component';
+import { ProductListComponent } from './_components/product-list/product-list.component';
+import { LoginComponent } from './_components/login/login.component';
+import { LogupComponent } from './_components/logup/logup.component';
+import { CartComponent } from './_components/cart/cart.component';
+import { ProductDetailComponent } from './_components/product-detail/product-detail.component';
+import { SearchComponent } from './_components/search/search.component';
 import { UserLayoutComponent } from './_layouts/user-layout/user-layout.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './_components/profile/profile.component';
+import { ChangepwdComponent } from './_components/changepwd/changepwd.component';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { authInterceptorProvoders } from './_helpers/auth.interceptor';
+import { OrderHistoryComponent } from './_components/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ProfileComponent } from './profile/profile.component';
     ProductDetailComponent,
     SearchComponent,
     UserLayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangepwdComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

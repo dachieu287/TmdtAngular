@@ -1,0 +1,37 @@
+<div class="container">
+    <nav class="nav nav-tabs nav-fill mt">
+      <a class="nav-item nav-link active" routerLink="/profile">Hồ sơ</a>
+      <a class="nav-item nav-link" routerLink="/changepwd">Đổi mật khẩu</a>
+      <a class="nav-item nav-link" routerLink="/order-history">Lịch sử đặt hàng</a>
+    </nav>
+
+    <table class="table table-hover mt-4">
+      <thead>
+        <th scope="col" class="text-center">Thời gian</th>
+        <th scope="col" class="text-center">Sản phẩm</th>
+        <th scope="col" class="text-center">Tổng tiền</th>
+        <th scope="col" class="text-center">Trạng thái</th>
+        <th scope="col" class="text-center">x</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.orderDate | date:'HH:mm dd/MM/yyy'}}</td>
+          <td>
+            <table>
+              <tbody>
+                <tr *ngFor="let detail of invoice.details">
+                  <td style="column-width:350px;">{{ detail.productName }}</td>
+                  <td class="text-right" style="column-width: 50px;">x{{ detail.quantity }}</td>
+                  <td class="text-right" style="column-width: 100px;"><div >{{ detail.price | number }}</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td class="text-right">{{ invoice.totalPrice | currency:'VND' }}</td>
+          <td>{{ invoice.status }}</td>
+          <td><button class="btn btn-danger" [disabled]="invoice.status !== 'Processing'" (click)="cancelOrder(invoice.id)">Hủy</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>

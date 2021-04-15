@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from '../_services/authentication.service';
-import { TokenStorageService } from '../_services/token-storage.service';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 
 @Component({

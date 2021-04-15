@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { API_URL } from '../_helpers/url-api';
-import { Cart } from '../_models/cart';
-import { AuthenticationService } from '../_services/authentication.service';
-import { CartService } from '../_services/cart.service';
+import { API_URL } from 'src/app/_helpers/url-api';
+import { Cart } from 'src/app/_models/cart';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { CartService } from 'src/app/_services/cart.service';
+import { InvoiceService } from 'src/app/_services/invoice.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private invoiceService: InvoiceService
   ) {
     
   }
@@ -43,7 +45,7 @@ export class CartComponent implements OnInit {
   changeQuantity(productId: number, increment: boolean): void {
     this.cartService.changeQuantity(productId, increment)
       .subscribe(
-        data => {
+        response => {
           this.cartService.updateCart();
         }
       );
@@ -51,9 +53,18 @@ export class CartComponent implements OnInit {
 
   deleteItem(productId: number): void {
     this.cartService.deleteItem(productId).subscribe(
-      data => {
+      response => {
         this.cartService.updateCart();
       }
     );
+  }
+
+  checkout(): void {
+    this.invoiceService.checkout().subscribe(
+      response => {
+        alert(response.message);
+        window.location.replace('/');
+      }
+    )
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auhtentication } from '../_models/authentication';
+import { Authentication } from '../_models/authentication';
 
 const AUTH_TOKEN = "auth-token";
 const AUTH_USERNAME = "auth-username";
@@ -15,7 +15,7 @@ export class TokenStorageService {
     window.sessionStorage.clear();
   }
 
-  public saveAuth(auth: Auhtentication): void {
+  public saveAuth(auth: Authentication): void {
     window.sessionStorage.removeItem(AUTH_TOKEN);
     window.sessionStorage.setItem(AUTH_TOKEN, auth.token);
 

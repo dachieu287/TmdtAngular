@@ -1,22 +1,13 @@
 <div class="container">
-  <!-- <div class="alert alert-success" *ngIf="isSuccess">
-    <strong>Thành công!</strong> Tài khoản của bạn đã được tạo; đăng nhập để tiếp tục.
-  </div> -->
 
-  <form class="box" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <nav class="nav nav-tabs nav-fill">
       <a class="nav-item nav-link active" routerLink="/profile">Hồ sơ</a>
       <a class="nav-item nav-link" routerLink="/changepwd">Đổi mật khẩu</a>
-      <a class="nav-item nav-link" routerLink="/orderhistory">Lịch sử đặt hàng</a>
+      <a class="nav-item nav-link" routerLink="/order-history">Lịch sử đặt hàng</a>
     </nav>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
-        <input type="text" class="form-control" placeholder="Tên tài khoản" formControlName="username" readonly>
-      </div>
-    </div>
 
-    <div class="input-group">
+    <div class="input-group mt-4">
       <div class="input-group-prepend">
         <span class="input-group-text"><fa-icon [icon]="faUserTie"></fa-icon></span>
         <input type="text" class="form-control" placeholder="Tên" formControlName="name">
@@ -49,7 +40,7 @@
     </div>
 
     <div class="input-group">
-      <button type="submit" class="btn btn-success mb-3" [disabled]="!form.valid">Cập nhật</button>
+      <button type="submit" class="btn btn-primary mb-4" [disabled]="!form.valid">Cập nhật</button>
     </div>
     
   </form>

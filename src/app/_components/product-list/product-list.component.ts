@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { API_URL } from '../_helpers/url-api';
-import { Cart } from '../_models/cart';
-import { Product } from '../_models/product';
-import { AuthenticationService } from '../_services/authentication.service';
-import { CartService } from '../_services/cart.service';
-import { ProductService } from '../_services/product.service';
+import { API_URL } from 'src/app/_helpers/url-api';
+import { Cart } from 'src/app/_models/cart';
+import { Product } from 'src/app/_models/product';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { CartService } from 'src/app/_services/cart.service';
+import { ProductService } from 'src/app/_services/product.service';
+
+
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class SearchComponent implements OnInit {
+export class ProductListComponent implements OnInit {
   public url = API_URL;
 
   products: Product[] = [];
@@ -22,24 +23,24 @@ export class SearchComponent implements OnInit {
   totalItems = 0;
 
   constructor(
-    private authService: AuthenticationService,
-    private cartService: CartService,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private cartService: CartService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
-    this.search = this.route.snapshot.params.search;
-    this.searchProducts();
+    this.getProducts();
   }
-  
-  searchProducts(): void {
-    this.productService.searchProducts(this.search ,this.page, this.pageSize)
+
+  getProducts(): void {
+    this.productService.getProducts(this.page, this.pageSize)
       .subscribe(response => {
         this.products = response.data;
         this.totalItems = response.totalRecords;
       });
   }
+
+
 
   addToCart(productId: number, quantity: number = 1) : void {
     if (!this.authService.isLogin()) {
@@ -51,7 +52,6 @@ export class SearchComponent implements OnInit {
     var cart: Cart = new Cart(productId, quantity, null);
     this.cartService.addToCart(cart).subscribe(
       response => {
-        console.log(response);
         this.cartService.updateCart();
       }
     );
@@ -60,6 +60,6 @@ export class SearchComponent implements OnInit {
 
   handlePageChange(event: number) {
     this.page = event;
-    this.searchProducts();
+    this.getProducts();
   }
 }

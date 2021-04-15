@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faEnvelope, faKey, faPhone, faRedo, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from '../_services/authentication.service';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 @Component({
   selector: 'app-logup',

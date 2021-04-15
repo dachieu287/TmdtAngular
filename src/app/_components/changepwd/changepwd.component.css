@@ -1,6 +1,4 @@
-.box {
-  top: 0;
-  width: 500px;
+.container {
   border: black 1em;
   border-radius: 10px;
   box-shadow: 0 0 30px 0 #999;
@@ -17,7 +15,7 @@
 }
 
 button {
-  width: 40%;
+  width: 200px;
   margin: auto;
   margin-top: 10px;
 }

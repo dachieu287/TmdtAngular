@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { API_URL } from '../_helpers/url-api';
 import { Cart } from '../_models/cart';
+import { MyResponse } from '../_models/my-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartUrl = API_URL + 'api/cart/';
+  private cartUrl = API_URL + 'api/carts/';
 
   private bsCarts = new BehaviorSubject<Cart[]>([]);
   public Carts = this.bsCarts.asObservable();
@@ -18,8 +19,8 @@ export class CartService {
   ) {
   }
 
-  getCarts(): Observable<Cart[]> {
-    return this.http.get<Cart[]>(this.cartUrl + 'getCart');
+  getCarts(): Observable<MyResponse<Cart[]>> {
+    return this.http.get<MyResponse<Cart[]>>(this.cartUrl + 'getCart');
 
   }
 
@@ -29,8 +30,8 @@ export class CartService {
 
   updateCart() :void {
     this.getCarts().subscribe(
-      data => {
-        this.bsCarts.next(data);
+      response => {
+        this.bsCarts.next(response.data);
       }
     ); 
   }

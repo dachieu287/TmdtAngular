@@ -1,0 +1,48 @@
+<div class="container">
+  <!-- <div class="alert alert-success" *ngIf="isSuccess">
+    <strong>Thành công!</strong> Tài khoản của bạn đã được tạo; đăng nhập để tiếp tục.
+  </div> -->
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <nav class="nav nav-tabs nav-fill">
+      <a class="nav-item nav-link" routerLink="/profile">Hồ sơ</a>
+      <a class="nav-item nav-link active" routerLink="/changepwd">Đổi mật khẩu</a>
+      <a class="nav-item nav-link" routerLink="/order-history">Lịch sử đặt hàng</a>
+    </nav>
+    <div class="input-group mt-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faLockOpen"></fa-icon></span>
+        <input type="password" class="form-control" placeholder="Mật khẩu hiện tại" formControlName="currentPassword">
+      </div>     
+    </div>
+    <div class="alert alert-danger" *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)">
+      <div *ngIf="currentPassword.errors.required">Mật khẩu không được bỏ trống</div>
+    </div>
+
+    <div class="input-group mt-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
+        <input type="password" class="form-control" placeholder="Mật khẩu mới" formControlName="password">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required">Mật khẩu không được bỏ trống</div>
+      <div *ngIf="password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><fa-icon [icon]="faRedo"></fa-icon></span>
+        <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" formControlName="repassword">
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)">
+      <div *ngIf="repassword.errors.notSame">Mật khẩu không khớp</div>
+    </div>
+
+    <div class="input-group">
+      <button type="submit" class="btn btn-primary mb-3" [disabled]="!form.valid">Đổi mật khẩu</button>
+    </div>
+    
+  </form>
+</div>

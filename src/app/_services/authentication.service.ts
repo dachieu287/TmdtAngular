@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/internal/operators';
 import { API_URL } from '../_helpers/url-api';
+import { MyResponse } from '../_models/my-response';
 import { TokenStorageService } from './token-storage.service';
 
 
@@ -65,8 +66,8 @@ export class AuthenticationService {
     return this.tokenStorage.getUsername();
   }
 
-  getProfile(): Observable<any> {
-    return this.http.get(AUTH_API + 'getProfile');
+  getProfile(): Observable<MyResponse<any>> {
+    return this.http.get<MyResponse<any>>(AUTH_API + 'getProfile');
   }
 
   updateProfile(name: string, email: string, phone: string): Observable<any> {
@@ -74,6 +75,13 @@ export class AuthenticationService {
       name: name,
       email: email,
       phone: phone
+    });
+  }
+
+  changePassword(currentPassword: string, newPassword: string): Observable<MyResponse<any>> {
+    return this.http.post<MyResponse<any>>(AUTH_API + 'changePassword', {
+      currentPassword: currentPassword,
+      newPassword: newPassword
     });
   }
 }

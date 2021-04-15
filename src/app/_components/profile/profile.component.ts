@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faEnvelope, faKey, faPhone, faRedo, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
-import { Profile } from '../_models/profile';
-import { AuthenticationService } from '../_services/authentication.service';
+import { Profile } from 'src/app/_models/profile';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +11,6 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class ProfileComponent implements OnInit {
   faUser = faUser;
-  faKey = faKey;
-  faRedo = faRedo;
   faUserTie = faUserTie;
   faEnvelope = faEnvelope;
   faPhone = faPhone;

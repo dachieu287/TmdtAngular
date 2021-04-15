@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { API_URL } from '../_helpers/url-api';
-import { Cart } from '../_models/cart';
-import { Product } from '../_models/product';
-import { AuthenticationService } from '../_services/authentication.service';
-import { CartService } from '../_services/cart.service';
-import { ProductService } from '../_services/product.service';
+import { API_URL } from 'src/app/_helpers/url-api';
+import { Cart } from 'src/app/_models/cart';
+import { Product } from 'src/app/_models/product';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { CartService } from 'src/app/_services/cart.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-product-detail',
