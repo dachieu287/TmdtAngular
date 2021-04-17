@@ -4,6 +4,7 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/internal/operators';
 import { API_URL } from '../_helpers/url-api';
+import { Authentication } from '../_models/authentication';
 import { MyResponse } from '../_models/my-response';
 import { TokenStorageService } from './token-storage.service';
 
@@ -21,8 +22,8 @@ export class AuthenticationService {
     private tokenStorage: TokenStorageService
   ) { }
 
-  login(username: string, password: string) : Observable<any> {
-    return this.http.post(AUTH_API + 'login', {
+  login(username: string, password: string) : Observable<MyResponse<Authentication>> {
+    return this.http.post<MyResponse<any>>(AUTH_API + 'login', {
       username: username,
       password: password
     });
@@ -63,7 +64,7 @@ export class AuthenticationService {
   }
 
   getUsername(): string {
-    return this.tokenStorage.getUsername();
+    return this.tokenStorage.getUser()?.username;
   }
 
   getProfile(): Observable<MyResponse<any>> {

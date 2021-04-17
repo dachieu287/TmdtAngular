@@ -5,9 +5,9 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <nav class="nav nav-tabs nav-fill">
-      <a class="nav-item nav-link" routerLink="/profile">Hồ sơ</a>
-      <a class="nav-item nav-link active" routerLink="/changepwd">Đổi mật khẩu</a>
-      <a class="nav-item nav-link" routerLink="/order-history">Lịch sử đặt hàng</a>
+      <a class="nav-item nav-link text-muted" routerLink="/profile">Hồ sơ</a>
+      <a class="nav-item nav-link text-muted active" routerLink="/changepwd">Đổi mật khẩu</a>
+      <a class="nav-item nav-link text-muted" routerLink="/order-history">Lịch sử đặt hàng</a>
     </nav>
     <div class="input-group mt-4">
       <div class="input-group-prepend">
@@ -15,8 +15,8 @@
         <input type="password" class="form-control" placeholder="Mật khẩu hiện tại" formControlName="currentPassword">
       </div>     
     </div>
-    <div class="alert alert-danger" *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)">
-      <div *ngIf="currentPassword.errors.required">Mật khẩu không được bỏ trống</div>
+    <div class="alert alert-danger" *ngIf="f.currentPassword.invalid && (f.currentPassword.dirty || f.currentPassword.touched)">
+      <div *ngIf="f.currentPassword.errors.required">Mật khẩu không được bỏ trống</div>
     </div>
 
     <div class="input-group mt-3">
@@ -25,9 +25,9 @@
         <input type="password" class="form-control" placeholder="Mật khẩu mới" formControlName="password">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-      <div *ngIf="password.errors.required">Mật khẩu không được bỏ trống</div>
-      <div *ngIf="password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
+    <div class="alert alert-danger" *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+      <div *ngIf="f.password.errors.required">Mật khẩu không được bỏ trống</div>
+      <div *ngIf="f.password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
     </div>
 
     <div class="input-group">
@@ -36,8 +36,8 @@
         <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" formControlName="repassword">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)">
-      <div *ngIf="repassword.errors.notSame">Mật khẩu không khớp</div>
+    <div class="alert alert-danger" *ngIf="f.repassword.invalid && (f.repassword.dirty || f.repassword.touched)">
+      <div *ngIf="f.repassword.errors.notSame">Mật khẩu không khớp</div>
     </div>
 
     <div class="input-group">

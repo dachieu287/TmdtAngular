@@ -20,6 +20,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { authInterceptorProvoders } from './_helpers/auth.interceptor';
 import { OrderHistoryComponent } from './_components/order-history/order-history.component';
+import { FooterComponent } from './_components/footer/footer.component';
+import { AdminLayoutComponent } from './_layouts/admin-layout/admin-layout.component';
+import { AdminProductListComponent } from './_components/admin-product-list/admin-product-list.component';
+import { AdminHeaderComponent } from './_components/admin-header/admin-header.component';
+import { AdminAddProductComponent } from './_components/admin-add-product/admin-add-product.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { OrderHistoryComponent } from './_components/order-history/order-history
     UserLayoutComponent,
     ProfileComponent,
     ChangepwdComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    FooterComponent,
+    AdminLayoutComponent,
+    AdminHeaderComponent,
+    AdminProductListComponent,
+    AdminAddProductComponent
   ],
   imports: [
     BrowserModule,

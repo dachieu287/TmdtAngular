@@ -30,8 +30,12 @@ export class ChangepwdComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.form.controls;
+  }
+
   onSubmit() {
-    this.authService.changePassword(this.currentPassword.value, this.password.value)
+    this.authService.changePassword(this.f.currentPassword.value, this.f.password.value)
       .subscribe(response => {
         alert(response.message);
       })
@@ -46,17 +50,5 @@ export class ChangepwdComponent implements OnInit {
       return { }
     }
     return null;
-  }
-
-  get password() {
-    return this.form.get('password');
-  }
-
-  get repassword() {
-    return this.form.get('repassword');
-  }
-
-  get currentPassword() {
-    return this.form.get('currentPassword');
   }
 }

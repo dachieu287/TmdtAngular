@@ -1,0 +1,25 @@
+.user_text a {
+  font-size: small;
+  font-weight: 400;
+  
+  color: black;
+}
+
+.user_name {
+  font-size: x-small;
+  
+  margin-top: -2px
+}
+
+.user_name a {
+  color: black;
+}
+
+.user_content {
+  margin-left: 10px;
+}
+
+.user_icon fa-icon {
+  font-size: x-large;
+  color: black;
+}

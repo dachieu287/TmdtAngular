@@ -38,35 +38,15 @@ export class LogupComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.logup(this.username.value, this.password.value, this.name.value, this.email.value, this.phone.value)
+    this.authService.logup(this.f.username.value, this.f.password.value, this.f.name.value, this.f.email.value, this.f.phone.value)
       .subscribe();
     
     this.isSuccess = true;
     this.form.reset();
   }
 
-  get username() {
-    return this.form.get('username');
-  }
-
-  get password() {
-    return this.form.get('password');
-  }
-
-  get repassword() {
-    return this.form.get('repassword');
-  }
-
-  get name() {
-    return this.form.get('name');
-  }
-
-  get email() {
-    return this.form.get('email');
-  }
-
-  get phone() {
-    return this.form.get('phone');
+  get f() {
+    return this.form.controls;
   }
 
   checkPasswords(group: FormGroup) {

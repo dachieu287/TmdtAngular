@@ -1,17 +1,17 @@
 <header>
-  <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
+  <nav class="navbar navbar-expand-lg py-3 fixed-top navbar-dark bg-dark">
     <div class="container">
-      <div class="col-lg-3">
+      <div class="col-md-3">
         <a href="#" class="navbar-brand">
           <span class="text-uppercase font-weight-bold">Commerce</span>
         </a>
       </div>
-      <div class="col-lg-6">
+      <div class="col-md-6">
         <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
           <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Tìm kiếm" aria-label="Search" #search (keyup.enter)="searchProduct(search.value)">
         </form>
       </div>
-      <div class="col-lg-3">
+      <div class="col-md-3">
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">

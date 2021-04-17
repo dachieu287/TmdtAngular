@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="form" (ngSubmit)="addProduct()">
+        <div class="form-group">
+          <label for="name">Tên sản phẩm</label>
+          <input class="form-control" type="text" id="name" formControlName="name">
+          <div class="alert alert-danger" *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">
+            <div *ngIf="f.name.errors.required">Tên sản phẩm không được bỏ trống</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Đơn giá</label>
+          <input class="form-control" type="text" id="price" formControlName="price">
+          <div class="alert alert-danger" *ngIf="f.price.invalid && (f.price.dirty || f.price.touched)">
+            <div *ngIf="f.price.errors.required">Đơn giá không được bỏ trống</div>
+            <div *ngIf="f.price.errors.pattern">Đơn giá không hợp lệ</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Mô tả</label>
+          <textarea class="form-control" id="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Ảnh</label>
+          <input class="form-control-file" type="file" id="image" accept="image/*" formControlName="image" (change)="selectFile($event)">     
+          <div class="alert alert-danger" *ngIf="f.image.invalid && (f.image.dirty || f.image.touched)">
+            <div *ngIf="f.image.errors.required">Ảnh không được bỏ trống</div>
+          </div>    
+        </div>
+
+        <button class="btn btn-info mt-4" type="submit" [disabled]="form.invalid">Thêm sản phẩm</button> <br>
+        <a routerLink="/admin/products">Quay lại</a>
+      </form>
+    </div>
+  </div>

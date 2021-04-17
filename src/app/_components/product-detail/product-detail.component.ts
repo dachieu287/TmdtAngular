@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
   faMinus = faMinus;
   faPlus = faPlus;
 
-  url = API_URL;
+  imageUrl = API_URL + 'images/';
   productId: number;
   product: Product = null;
   quantity: number = 1;
@@ -37,8 +37,10 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     
     this.productService.getProduct(this.productId).subscribe(
-      data => {
-        this.product = data;
+      response => {
+        if (response.succeeded) {
+          this.product = response.data;
+        }
       }
     );
   }
@@ -50,7 +52,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     this.cartService.addToCart(new Cart(this.productId, this.quantity, null)).subscribe(
-      data => {
+      response => {
         this.cartService.updateCart();
       }
     );

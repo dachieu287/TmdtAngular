@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faEnvelope, faKey, faPhone, faRedo, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
-import { Profile } from 'src/app/_models/profile';
+import { faEnvelope, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { User } from 'src/app/_models/user';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   faPhone = faPhone;
   
   form: FormGroup;
-  profile: Profile;
+  profile: User;
 
   constructor(
     private authServive: AuthenticationService
@@ -32,21 +32,25 @@ export class ProfileComponent implements OnInit {
       phone: new FormControl('', [Validators.required, Validators.pattern(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)])
     });
   }
+  
+  get f() {
+    return this.form.controls;
+  }
 
   getProfile(): void {
     this.authServive.getProfile().subscribe(
       response => {
         this.profile = response.data;
-        this.username.setValue(this.profile.username);
-        this.name.setValue(this.profile.name);
-        this.email.setValue(this.profile.email);
-        this.phone.setValue(this.profile.phone);
+        this.f.username.setValue(this.profile.username);
+        this.f.name.setValue(this.profile.name);
+        this.f.email.setValue(this.profile.email);
+        this.f.phone.setValue(this.profile.phone);
       }
     )
   }
 
   onSubmit() {
-    this.authServive.updateProfile(this.name.value, this.email.value, this.phone.value)
+    this.authServive.updateProfile(this.f.name.value, this.f.email.value, this.f.phone.value)
       .subscribe(
         response => {
           alert(response.message);
@@ -54,19 +58,4 @@ export class ProfileComponent implements OnInit {
       )
   }
 
-  get username() {
-    return this.form.get('username');
-  }
-
-  get name() {
-    return this.form.get('name');
-  }
-
-  get email() {
-    return this.form.get('email');
-  }
-
-  get phone() {
-    return this.form.get('phone');
-  }
 }

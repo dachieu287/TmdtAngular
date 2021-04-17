@@ -2,9 +2,9 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <nav class="nav nav-tabs nav-fill">
-      <a class="nav-item nav-link active" routerLink="/profile">Hồ sơ</a>
-      <a class="nav-item nav-link" routerLink="/changepwd">Đổi mật khẩu</a>
-      <a class="nav-item nav-link" routerLink="/order-history">Lịch sử đặt hàng</a>
+      <a class="nav-item nav-link text-muted active" routerLink="/profile">Hồ sơ</a>
+      <a class="nav-item nav-link text-muted" routerLink="/changepwd">Đổi mật khẩu</a>
+      <a class="nav-item nav-link text-muted" routerLink="/order-history">Lịch sử đặt hàng</a>
     </nav>
 
     <div class="input-group mt-4">
@@ -13,8 +13,8 @@
         <input type="text" class="form-control" placeholder="Tên" formControlName="name">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-      <div *ngIf="name.errors.required">Không được bỏ trống</div>
+    <div class="alert alert-danger" *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">
+      <div *ngIf="f.name.errors.required">Không được bỏ trống</div>
     </div>
 
     <div class="input-group">
@@ -23,9 +23,9 @@
         <input type="email" class="form-control" placeholder="Email" formControlName="email">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors.required">Không được bỏ trống</div>
-      <div *ngIf="email.errors.email">Email không hợp lệ</div>
+    <div class="alert alert-danger" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+      <div *ngIf="f.email.errors.required">Không được bỏ trống</div>
+      <div *ngIf="f.email.errors.email">Email không hợp lệ</div>
     </div>
 
     <div class="input-group">
@@ -34,9 +34,9 @@
         <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" formControlName="phone">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-      <div *ngIf="phone.errors.required">Không được bỏ trống</div>
-      <div *ngIf="phone.errors.pattern">Số điện thoại không hợp lệ</div>
+    <div class="alert alert-danger" *ngIf="f.phone.invalid && (f.phone.dirty || f.phone.touched)">
+      <div *ngIf="f.phone.errors.required">Không được bỏ trống</div>
+      <div *ngIf="f.phone.errors.pattern">Số điện thoại không hợp lệ</div>
     </div>
 
     <div class="input-group">

@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/_services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public url = API_URL;
+  public imageUrl = API_URL + 'images/';
 
   products: Product[] = [];
   search = '';

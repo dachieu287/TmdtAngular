@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Authentication } from '../_models/authentication';
+import { User } from '../_models/user';
 
-const AUTH_TOKEN = "auth-token";
-const AUTH_USERNAME = "auth-username";
+const TOKEN = "token";
+const USER = "user";
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,19 @@ export class TokenStorageService {
   }
 
   public saveAuth(auth: Authentication): void {
-    window.sessionStorage.removeItem(AUTH_TOKEN);
-    window.sessionStorage.setItem(AUTH_TOKEN, auth.token);
+    window.sessionStorage.removeItem(TOKEN);
+    window.sessionStorage.setItem(TOKEN, auth.token);
 
-    window.sessionStorage.removeItem(AUTH_USERNAME);
-    window.sessionStorage.setItem(AUTH_USERNAME, auth.username);
+    window.sessionStorage.removeItem(USER);
+    window.sessionStorage.setItem(USER, JSON.stringify(auth.user));
   }
 
   getToken(): string | null {
-    return window.sessionStorage.getItem(AUTH_TOKEN);
+    return window.sessionStorage.getItem(TOKEN);
   }
 
-  getUsername(): string | null {
-    return window.sessionStorage.getItem(AUTH_USERNAME);
+  getUser(): User | null {
+    const user = window.sessionStorage.getItem(USER);
+    return user ? JSON.parse(user) : null;
   }
 }

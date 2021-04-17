@@ -10,10 +10,10 @@
         <input type="text" class="form-control" placeholder="Tên tài khoản" formControlName="username">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
-      <div *ngIf="username.errors.required">Tên tài khoản không được bỏ trống</div>
-      <div *ngIf="username.errors.minlength">Tên tài khoản phải ít nhất 4 ký tự</div>
-      <div *ngIf="username.errors.usernameExists">Tên tài khoản đã tồn tại</div>
+    <div class="alert alert-danger" *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
+      <div *ngIf="f.username.errors.required">Tên tài khoản không được bỏ trống</div>
+      <div *ngIf="f.username.errors.minlength">Tên tài khoản phải ít nhất 4 ký tự</div>
+      <div *ngIf="f.username.errors.usernameExists">Tên tài khoản đã tồn tại</div>
     </div>
     
 
@@ -23,9 +23,9 @@
         <input type="password" class="form-control" placeholder="Mật khẩu" formControlName="password">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-      <div *ngIf="password.errors.required">Mật khẩu không được bỏ trống</div>
-      <div *ngIf="password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
+    <div class="alert alert-danger" *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+      <div *ngIf="f.password.errors.required">Mật khẩu không được bỏ trống</div>
+      <div *ngIf="f.password.errors.pattern">Mật khẩu phải có ít nhất 6 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt</div>
     </div>
 
     <div class="input-group">
@@ -34,8 +34,8 @@
         <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" formControlName="repassword">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)">
-      <div *ngIf="repassword.errors.notSame">Mật khẩu không khớp</div>
+    <div class="alert alert-danger" *ngIf="f.repassword.invalid && (f.repassword.dirty || f.repassword.touched)">
+      <div *ngIf="f.repassword.errors.notSame">Mật khẩu không khớp</div>
     </div>
 
     <div class="input-group">
@@ -44,8 +44,8 @@
         <input type="text" class="form-control" placeholder="Tên" formControlName="name">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-      <div *ngIf="name.errors.required">Không được bỏ trống</div>
+    <div class="alert alert-danger" *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">
+      <div *ngIf="f.name.errors.required">Không được bỏ trống</div>
     </div>
 
     <div class="input-group">
@@ -54,9 +54,9 @@
         <input type="email" class="form-control" placeholder="Email" formControlName="email">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors.required">Không được bỏ trống</div>
-      <div *ngIf="email.errors.email">Email không hợp lệ</div>
+    <div class="alert alert-danger" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+      <div *ngIf="f.email.errors.required">Không được bỏ trống</div>
+      <div *ngIf="f.email.errors.email">Email không hợp lệ</div>
     </div>
 
     <div class="input-group">
@@ -65,9 +65,9 @@
         <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" formControlName="phone">
       </div>
     </div>
-    <div class="alert alert-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-      <div *ngIf="phone.errors.required">Không được bỏ trống</div>
-      <div *ngIf="phone.errors.pattern">Số điện thoại không hợp lệ</div>
+    <div class="alert alert-danger" *ngIf="f.phone.invalid && (f.phone.dirty || f.phone.touched)">
+      <div *ngIf="f.phone.errors.required">Không được bỏ trống</div>
+      <div *ngIf="f.phone.errors.pattern">Số điện thoại không hợp lệ</div>
     </div>
 
     <div class="input-group">

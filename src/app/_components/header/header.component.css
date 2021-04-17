@@ -19,11 +19,6 @@
   line-height: 20px;
   font-size: x-small;
   color: #FFFFFF;
-  -webkit-transform: translateY(1px);
-  -moz-transform: translateY(1px);
-  -ms-transform: translateY(1px);
-  -o-transform: translateY(1px);
-  transform: translateY(1px)
 }
 
 .cart_content {
@@ -34,11 +29,6 @@
   font-size: small;
   font-weight: 400;
   color: white;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease
 }
 
 .cart_price {
