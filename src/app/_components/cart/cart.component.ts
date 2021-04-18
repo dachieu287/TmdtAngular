@@ -11,7 +11,7 @@ import { InvoiceService } from 'src/app/_services/invoice.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  url = API_URL;
+  imageUrl = API_URL + 'images/';
   carts: Cart[] = [];
   cartCountItems = 0;
   cartTotalPrice = 0;

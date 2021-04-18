@@ -45,4 +45,19 @@ export class ProductService {
 
     return this.http.post<MyResponse<Product>>(this.productUrl, formData);
   }
+
+  editProduct(id: number, name: string, price: number, description: string, image: Blob): Observable<MyResponse<Product>> {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('name', name);
+    formData.append('price', price.toString());
+    formData.append('description', description);
+    formData.append('image', image);
+
+    return this.http.put<MyResponse<Product>>(this.productUrl, formData);
+  }
+
+  deleteProduct(id: number): Observable<MyResponse<Product>> {
+    return this.http.delete<MyResponse<Product>>(this.productUrl + '/' + id);
+  }
 }

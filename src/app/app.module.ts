@@ -24,7 +24,9 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { AdminLayoutComponent } from './_layouts/admin-layout/admin-layout.component';
 import { AdminProductListComponent } from './_components/admin-product-list/admin-product-list.component';
 import { AdminHeaderComponent } from './_components/admin-header/admin-header.component';
-import { AdminAddProductComponent } from './_components/admin-add-product/admin-add-product.component';
+import { AdminProductAddComponent } from './_components/admin-product-add/admin-add-product.component';
+import { AdminProductDetailComponent } from './_components/admin-product-detail/admin-product-detail.component';
+import { AdminProductEditComponent } from './_components/admin-product-edit/admin-product-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AdminAddProductComponent } from './_components/admin-add-product/admin-
     AdminLayoutComponent,
     AdminHeaderComponent,
     AdminProductListComponent,
-    AdminAddProductComponent
+    AdminProductAddComponent,
+    AdminProductDetailComponent,
+    AdminProductEditComponent
   ],
   imports: [
     BrowserModule,

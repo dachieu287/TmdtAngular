@@ -13,23 +13,23 @@ export class TokenStorageService {
   constructor() { }
 
   logout(): void {
-    window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
   public saveAuth(auth: Authentication): void {
-    window.sessionStorage.removeItem(TOKEN);
-    window.sessionStorage.setItem(TOKEN, auth.token);
+    window.localStorage.removeItem(TOKEN);
+    window.localStorage.setItem(TOKEN, auth.token);
 
-    window.sessionStorage.removeItem(USER);
-    window.sessionStorage.setItem(USER, JSON.stringify(auth.user));
+    window.localStorage.removeItem(USER);
+    window.localStorage.setItem(USER, JSON.stringify(auth.user));
   }
 
   getToken(): string | null {
-    return window.sessionStorage.getItem(TOKEN);
+    return window.localStorage.getItem(TOKEN);
   }
 
   getUser(): User | null {
-    const user = window.sessionStorage.getItem(USER);
+    const user = window.localStorage.getItem(USER);
     return user ? JSON.parse(user) : null;
   }
 }

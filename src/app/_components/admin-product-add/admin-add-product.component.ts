@@ -8,13 +8,13 @@ import { ProductService } from 'src/app/_services/product.service';
   templateUrl: './admin-add-product.component.html',
   styleUrls: ['./admin-add-product.component.css']
 })
-export class AdminAddProductComponent implements OnInit {
+export class AdminProductAddComponent implements OnInit {
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required ,Validators.pattern(/^[0-9]+$/)]),
     description: new FormControl(''),
     image: new FormControl('', [Validators.required])
-  })
+  });
 
   file: File;
 

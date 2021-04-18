@@ -1,0 +1,22 @@
+<div class="container"> 
+  <h4>Chi tiết sản phẩm</h4>
+  <dl class="row">
+    <dt class="col-md-2">Tên sản phẩm</dt>
+    <dd class="col-md-10">{{ product?.name }}</dd>
+  
+    <dt class="col-md-2">Đơn giá</dt>
+    <dd class="col-md-10">{{ product?.price | currency:'VND' }}</dd>
+ 
+    <dt class="col-md-2">Mô tả</dt>
+    <dd class="col-md-10">{{ product?.description }}</dd>
+
+    <dt class="col-md-2">Ảnh</dt>
+    <dd class="col-md-10"><img src="{{  product ? imageUrl + product.imageUrl : '' }}" width="300px"></dd>
+  </dl>
+  <div class="mt-4">
+    <a class="btn btn-primary" [routerLink]="['/admin/products/edit', product?.id]">Sửa</a>
+    <a class="btn btn-danger ml-2" (click)="deleteProduct()">Xóa</a>
+    <br>
+    <a routerLink="/admin/products">Quay lại</a>
+  </div>
+</div>

@@ -19,7 +19,7 @@
             itemsPerPage: pageSize,
             currentPage: page,
             totalItems: totalItems
-          }">
+          }" [routerLink]="['/admin/products/detail', product.id]">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td class="text-right">{{ product.price | number }}</td>

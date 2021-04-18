@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminAddProductComponent } from './_components/admin-add-product/admin-add-product.component';
+import { AdminProductAddComponent } from './_components/admin-product-add/admin-add-product.component';
+import { AdminProductDetailComponent } from './_components/admin-product-detail/admin-product-detail.component';
+import { AdminProductEditComponent } from './_components/admin-product-edit/admin-product-edit.component';
 import { AdminProductListComponent } from './_components/admin-product-list/admin-product-list.component';
 import { CartComponent } from './_components/cart/cart.component';
 import { ChangepwdComponent } from './_components/changepwd/changepwd.component';
@@ -32,7 +34,9 @@ const routes: Routes = [
   { path: 'admin', component: AdminLayoutComponent, canActivate: [Guard], children: [
     { path: '', redirectTo: 'products', pathMatch: 'full' },
     { path: 'products', component: AdminProductListComponent },
-    { path: 'products/add', component: AdminAddProductComponent }
+    { path: 'products/add', component: AdminProductAddComponent },
+    { path: 'products/detail/:productId', component: AdminProductDetailComponent },
+    { path: 'products/edit/:productId', component: AdminProductEditComponent}
   ]}
 ];
 
