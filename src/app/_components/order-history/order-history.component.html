@@ -7,6 +7,7 @@
 
     <table class="table table-hover mt-4">
       <thead>
+        <th scope="col" class="text-center">Mã HĐ</th>
         <th scope="col" class="text-center">Thời gian</th>
         <th scope="col" class="text-center">Sản phẩm</th>
         <th scope="col" class="text-center">Tổng tiền</th>
@@ -15,12 +16,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let invoice of invoices">
+          <td class="text-center">{{ invoice.id }}</td>
           <td>{{ invoice.orderDate | date:'HH:mm dd/MM/yyy'}}</td>
           <td>
             <table>
               <tbody>
                 <tr *ngFor="let detail of invoice.details">
-                  <td style="column-width:350px;">{{ detail.productName }}</td>
+                  <td style="column-width:300px;">{{ detail.productName }}</td>
                   <td class="text-right" style="column-width: 50px;">x{{ detail.quantity }}</td>
                   <td class="text-right" style="column-width: 100px;"><div >{{ detail.price | number }}</div></td>
                 </tr>
@@ -28,7 +30,7 @@
             </table>
           </td>
           <td class="text-right">{{ invoice.totalPrice | currency:'VND' }}</td>
-          <td>{{ invoice.status }}</td>
+          <td>{{ invoice.statusVietnamese }}</td>
           <td><button class="btn btn-danger" [disabled]="invoice.status !== 'Processing'" (click)="cancelOrder(invoice.id)">Hủy</button></td>
         </tr>
       </tbody>

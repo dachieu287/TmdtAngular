@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-3">
+      <table class="table table-hover">
+        <thead>
+          <th scope="col" class="text-center">Mã HĐ</th>
+          <th scope="col" class="text-center">Thời gian</th>
+          <th scope="col" class="text-right">Tổng tiền</th>
+          <th scope="col" class="text-center">Trạng thái</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoice of invoices | paginate: {
+            itemsPerPage: pageSize,
+            currentPage: pageNumber,
+            totalItems: totalItems
+          }" [routerLink]="['/admin/invoices/detail', invoice.id]">
+            <td class="text-center">{{ invoice.id }}</td>
+            <td class="text-center">{{ invoice.orderDate | date:'HH:mm dd/MM/yyyy' }}</td>
+            <td class="text-right">{{ invoice.totalPrice | number }}</td>
+            <td class="text-center">{{ invoice.statusVietnamese }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <pagination-controls class="text-center"
+        previousLabel = ""
+        nextLabel = ""
+        [responsive] = "true"
+        (pageChange)="handlePageChange($event)">
+
+      </pagination-controls>
+    </div>
+  </div>
+</div>

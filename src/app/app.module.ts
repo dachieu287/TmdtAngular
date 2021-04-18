@@ -27,6 +27,8 @@ import { AdminHeaderComponent } from './_components/admin-header/admin-header.co
 import { AdminProductAddComponent } from './_components/admin-product-add/admin-add-product.component';
 import { AdminProductDetailComponent } from './_components/admin-product-detail/admin-product-detail.component';
 import { AdminProductEditComponent } from './_components/admin-product-edit/admin-product-edit.component';
+import { AdminInvoiceListComponent } from './_components/admin-invoice-list/admin-invoice-list.component';
+import { AdminInvoiceDetailComponent } from './_components/admin-invoice-detail/admin-invoice-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { AdminProductEditComponent } from './_components/admin-product-edit/admi
     AdminProductListComponent,
     AdminProductAddComponent,
     AdminProductDetailComponent,
-    AdminProductEditComponent
+    AdminProductEditComponent,
+    AdminInvoiceListComponent,
+    AdminInvoiceDetailComponent
   ],
   imports: [
     BrowserModule,

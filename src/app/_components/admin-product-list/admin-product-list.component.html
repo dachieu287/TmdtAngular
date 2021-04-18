@@ -9,19 +9,20 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Tên sản phẩm</th>
-            <th class="text-right">Đơn giá</th>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col" class="text-left">Tên sản phẩm</th>
+            <th scope="col" class="text-right">Đơn giá</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let product of products | paginate: {
-            itemsPerPage: pageSize,
-            currentPage: page,
-            totalItems: totalItems
-          }" [routerLink]="['/admin/products/detail', product.id]">
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
+              itemsPerPage: pageSize,
+              currentPage: page,
+              totalItems: totalItems
+            }" [routerLink]="['/admin/products/detail', product.id]"
+          >
+            <td class="text-center">{{ product.id }}</td>
+            <td class="text-left">{{ product.name }}</td>
             <td class="text-right">{{ product.price | number }}</td>
           </tr>
         </tbody>

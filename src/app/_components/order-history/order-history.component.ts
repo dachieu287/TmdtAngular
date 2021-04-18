@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Invoice } from 'src/app/_models/invoice';
+import { Invoice, InvoiceStatus, InvoiceStatusVietnamese } from 'src/app/_models/invoice';
 import { InvoiceService } from 'src/app/_services/invoice.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { InvoiceService } from 'src/app/_services/invoice.service';
 })
 export class OrderHistoryComponent implements OnInit {
   invoices: Invoice[];
+  invoiceStatus = InvoiceStatus;
+  invoiceStatusVietnamese = InvoiceStatusVietnamese;
 
   constructor(
     private invoiceService: InvoiceService
@@ -22,7 +24,8 @@ export class OrderHistoryComponent implements OnInit {
     this.invoiceService.orderHistory().subscribe(
       respone => {
         this.invoices = respone.data;
-        console.log(respone);
+        this.invoiceService.vietnameseStatus(this.invoices);
+        //console.log(respone);
       }
     )
   }
@@ -33,7 +36,8 @@ export class OrderHistoryComponent implements OnInit {
         response => {
           if (response.succeeded) {
             let invoice = this.invoices.find(i => i.id == response.data);
-            invoice.status = "Cancelled";
+            invoice.status = this.invoiceStatus.cancelled;
+            invoice.statusVietnamese = this.invoiceStatusVietnamese.cancelled;
           }
           else {
             alert(response.message);

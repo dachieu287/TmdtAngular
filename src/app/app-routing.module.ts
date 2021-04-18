@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminInvoiceDetailComponent } from './_components/admin-invoice-detail/admin-invoice-detail.component';
+import { AdminInvoiceListComponent } from './_components/admin-invoice-list/admin-invoice-list.component';
 import { AdminProductAddComponent } from './_components/admin-product-add/admin-add-product.component';
 import { AdminProductDetailComponent } from './_components/admin-product-detail/admin-product-detail.component';
 import { AdminProductEditComponent } from './_components/admin-product-edit/admin-product-edit.component';
@@ -32,11 +34,13 @@ const routes: Routes = [
     { path: 'order-history', component: OrderHistoryComponent }
   ]},
   { path: 'admin', component: AdminLayoutComponent, canActivate: [Guard], children: [
-    { path: '', redirectTo: 'products', pathMatch: 'full' },
+    { path: '', redirectTo: 'invoices', pathMatch: 'full' },
     { path: 'products', component: AdminProductListComponent },
     { path: 'products/add', component: AdminProductAddComponent },
     { path: 'products/detail/:productId', component: AdminProductDetailComponent },
-    { path: 'products/edit/:productId', component: AdminProductEditComponent}
+    { path: 'products/edit/:productId', component: AdminProductEditComponent},
+    { path: 'invoices', component: AdminInvoiceListComponent },
+    { path: 'invoices/detail/:invoiceId', component: AdminInvoiceDetailComponent }
   ]}
 ];
 
