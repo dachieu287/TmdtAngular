@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
-import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { IdentityService } from 'src/app/_services/identity.service';
+import { LocalStorageService } from 'src/app/_services/local-storage.service';
 
 
 @Component({
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   
   constructor(
-    private authService: AuthenticationService,
-    private tokenStorage: TokenStorageService,
+    private authService: IdentityService,
+    private localStorage: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           if (response.succeeded) {
-            this.tokenStorage.saveAuth(response.data);
+            this.localStorage.saveIdentity(response);
             this.isLoginFailed = false;
-            let isAdmin = response.data.user.roles.indexOf('Admin') != -1;
+            let isAdmin = response.user.roles.indexOf('Admin') != -1;
             if (isAdmin) {
               window.location.replace('/admin');
             }
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
           }
           else {
             this.isLoginFailed = true;
-            this.errorMessage = response.message;
+            this.errorMessage = "Tên tài khoản hoặc mật khẩu không chính xác";
           }  
         },
       )

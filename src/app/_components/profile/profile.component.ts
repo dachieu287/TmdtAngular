@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faEnvelope, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/_models/user';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   profile: User;
 
   constructor(
-    private authServive: AuthenticationService
+    private authServive: IdentityService
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   getProfile(): void {
     this.authServive.getProfile().subscribe(
       response => {
-        this.profile = response.data;
+        this.profile = response;
         this.f.username.setValue(this.profile.username);
         this.f.name.setValue(this.profile.name);
         this.f.email.setValue(this.profile.email);

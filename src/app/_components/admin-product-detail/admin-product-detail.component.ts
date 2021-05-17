@@ -27,7 +27,7 @@ export class AdminProductDetailComponent implements OnInit {
     const productId = this.route.snapshot.params.productId;
     this.productService.getProduct(productId).subscribe(
       response => {
-        this.product = response.data;
+        this.product = response;
       }
     );
   }
@@ -36,10 +36,8 @@ export class AdminProductDetailComponent implements OnInit {
     if (confirm("Xóa sản phẩm?")) {
       this.productService.deleteProduct(this.product.id).subscribe(
         response => {
-          if (response.succeeded) {
-            alert(response.message);
+            alert("Xoá thành công");
             this.router.navigateByUrl('/admin/products');
-          }
         }
       )
     }

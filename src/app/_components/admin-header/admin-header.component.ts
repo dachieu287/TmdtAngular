@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -12,7 +12,7 @@ export class AdminHeaderComponent implements OnInit {
   username: string;
 
   constructor(
-    private authService: AuthenticationService
+    private authService: IdentityService
   ) { }
 
   ngOnInit(): void {

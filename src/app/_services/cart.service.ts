@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { API_URL } from '../_helpers/url-api';
 import { Cart } from '../_models/cart';
-import { MyResponse } from '../_models/my-response';
+import { CartTotalResponse } from '../_responses/cart-total.response';
+import { MyResponse } from '../_responses/my.response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,21 @@ import { MyResponse } from '../_models/my-response';
 export class CartService {
   private cartUrl = API_URL + 'api/carts/';
 
-  private bsCarts = new BehaviorSubject<Cart[]>([]);
-  public Carts = this.bsCarts.asObservable();
+  private bsCartTotal = new BehaviorSubject<CartTotalResponse>(null);
+  public CartTotal = this.bsCartTotal.asObservable();
 
   constructor(
     private http: HttpClient
   ) {
   }
 
-  getCarts(): Observable<MyResponse<Cart[]>> {
-    return this.http.get<MyResponse<Cart[]>>(this.cartUrl + 'getCart');
+  getCartTotal(): Observable<CartTotalResponse> {
+    return this.http.get<CartTotalResponse>(this.cartUrl + 'getCartTotal');
 
+  }
+
+  getCartDetail(): Observable<Cart[]> {
+    return this.http.get<Cart[]>(this.cartUrl + 'getCartDetail');
   }
 
   addToCart(cart: Cart): Observable<any> {
@@ -29,18 +34,18 @@ export class CartService {
   }
 
   updateCart() :void {
-    this.getCarts().subscribe(
+    this.getCartTotal().subscribe(
       response => {
-        this.bsCarts.next(response.data);
+        this.bsCartTotal.next(response);
       }
     ); 
   }
 
   changeQuantity(productId: number, increment: boolean): Observable<any> {
-    return this.http.get(this.cartUrl + 'changeQuantity', { params: {
-      productId: productId.toString(),
-      increment: increment.toString()
-    }});
+    return this.http.post(this.cartUrl + 'changeQuantity', {
+      productId,
+      increment
+    });
   }
 
   deleteItem(productId: number): Observable<any> {

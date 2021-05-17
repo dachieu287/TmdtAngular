@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
-import { TokenStorageService } from "../_services/token-storage.service";
+import { LocalStorageService } from "../_services/local-storage.service";
 
 @Injectable()
 export class Guard implements CanActivate {
   constructor(
-    private storage: TokenStorageService
+    private storage: LocalStorageService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { API_URL } from 'src/app/_helpers/url-api';
 import { Cart } from 'src/app/_models/cart';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { InvoiceService } from 'src/app/_services/invoice.service';
 
@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private authService: AuthenticationService,
+    private authService: IdentityService,
     private invoiceService: InvoiceService
   ) {
     
@@ -29,17 +29,26 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.isLogin = this.authService.isLogin();
 
-    this.cartService.Carts.subscribe(
-      data => {
-        this.carts = data;
-        this.cartCountItems = 0;
-        this.cartTotalPrice = 0;
-        this.carts.forEach(element => {
-          this.cartCountItems += element.quantity;
-          this.cartTotalPrice += element.quantity * element.product.price;
-        });
+    // this.cartService.CartTotal.subscribe(
+    //   response => {
+    //     this.cartCountItems = 0;
+    //     this.cartTotalPrice = 0;
+    //     this.carts.forEach(element => {
+    //       this.cartCountItems += element.quantity;
+    //       this.cartTotalPrice += element.quantity * element.product.price;
+    //     });
+    //   }
+    // );
+
+    this.getCartDetail();
+  }
+
+  getCartDetail(): void {
+    this.cartService.getCartDetail().subscribe(
+      response => {
+        this.carts = response;
       }
-    );
+    )
   }
 
   changeQuantity(productId: number, increment: boolean): void {
@@ -47,6 +56,7 @@ export class CartComponent implements OnInit {
       .subscribe(
         response => {
           this.cartService.updateCart();
+          this.getCartDetail();
         }
       );
   }
@@ -55,6 +65,7 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItem(productId).subscribe(
       response => {
         this.cartService.updateCart();
+        this.getCartDetail();
       }
     );
   }
@@ -62,7 +73,7 @@ export class CartComponent implements OnInit {
   checkout(): void {
     this.invoiceService.checkout().subscribe(
       response => {
-        alert(response.message);
+        alert("Thành công");
         window.location.replace('/');
       }
     )

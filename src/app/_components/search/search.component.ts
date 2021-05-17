@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { API_URL } from 'src/app/_helpers/url-api';
 import { Cart } from 'src/app/_models/cart';
 import { Product } from 'src/app/_models/product';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { ProductService } from 'src/app/_services/product.service';
 
@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/_services/product.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  public url = API_URL;
+  public urlImage = API_URL + "images/";
 
   products: Product[] = [];
   search = '';
@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   totalItems = 0;
 
   constructor(
-    private authService: AuthenticationService,
+    private authService: IdentityService,
     private cartService: CartService,
     private productService: ProductService,
     private route: ActivatedRoute
@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
   searchProducts(): void {
     this.productService.searchProducts(this.search ,this.page, this.pageSize)
       .subscribe(response => {
-        this.products = response.data;
+        this.products = response.products;
         this.totalItems = response.totalRecords;
       });
   }

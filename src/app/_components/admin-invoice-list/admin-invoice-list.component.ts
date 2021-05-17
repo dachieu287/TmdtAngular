@@ -25,7 +25,7 @@ export class AdminInvoiceListComponent implements OnInit {
   getInvoices(): void {
     this.invoiceService.getInvoices(this.pageNumber, this.pageSize).subscribe(
       response => {
-        this.invoices = response.data;
+        this.invoices = response.invoices;
         this.totalItems = response.totalRecords;
         this.invoiceService.vietnameseStatus(this.invoices);
       }

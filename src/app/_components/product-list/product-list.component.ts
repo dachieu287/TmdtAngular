@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { API_URL } from 'src/app/_helpers/url-api';
 import { Cart } from 'src/app/_models/cart';
 import { Product } from 'src/app/_models/product';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { ProductService } from 'src/app/_services/product.service';
 
@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private authService: AuthenticationService
+    private authService: IdentityService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts(this.page, this.pageSize)
       .subscribe(response => {
-        this.products = response.data;
+        this.products = response.products;
         this.totalItems = response.totalRecords;
       });
   }

@@ -25,7 +25,7 @@ export class AdminProductListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts(this.page, this.pageSize).subscribe(
       response => {
-        this.products = response.data;
+        this.products = response.products;
         this.totalItems = response.totalRecords;
       }
     )

@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { TokenStorageService } from "../_services/token-storage.service";
+import { LocalStorageService } from "../_services/local-storage.service";
 
 
 const TOKEN_HEADER_KEY = 'Authorization';
@@ -10,7 +10,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 export class AuthInterceptor implements HttpInterceptor {
   
   constructor(
-    private token: TokenStorageService
+    private token: LocalStorageService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

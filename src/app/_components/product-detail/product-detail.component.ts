@@ -4,7 +4,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { API_URL } from 'src/app/_helpers/url-api';
 import { Cart } from 'src/app/_models/cart';
 import { Product } from 'src/app/_models/product';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { ProductService } from 'src/app/_services/product.service';
 
@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private authService: AuthenticationService,
+    private authService: IdentityService,
     private cartService: CartService
   ) { }
 
@@ -38,9 +38,7 @@ export class ProductDetailComponent implements OnInit {
     
     this.productService.getProduct(this.productId).subscribe(
       response => {
-        if (response.succeeded) {
-          this.product = response.data;
-        }
+        this.product = response;
       }
     );
   }

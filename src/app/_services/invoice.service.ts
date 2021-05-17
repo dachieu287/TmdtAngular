@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from '../_helpers/url-api';
 import { Invoice, InvoiceStatus, InvoiceStatusVietnamese } from '../_models/invoice';
-import { MyResponse } from '../_models/my-response';
-import { PagedResponse } from '../_models/paged-response';
+import { BaseResponse } from '../_responses/base.response';
+import { InvoicesPagedResponse } from '../_responses/invoices-paged.response';
+import { MyResponse } from '../_responses/my.response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +17,22 @@ export class InvoiceService {
     private http: HttpClient
   ) { }
 
-  checkout(): Observable<MyResponse<any>> {
-    return this.http.get<MyResponse<any>>(this.invoiceUrl + 'checkout');
+  checkout(): Observable<any> {
+    return this.http.post<any>(this.invoiceUrl + 'checkout', {});
   }
 
-  orderHistory(): Observable<MyResponse<Invoice[]>> {
-    return this.http.get<MyResponse<Invoice[]>>(this.invoiceUrl + 'orderHistory');
+  orderHistory(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.invoiceUrl + 'orderHistory');
   }
 
-  cancelOrder(id: number): Observable<MyResponse<number>> {
-    return this.http.delete<MyResponse<number>>(this.invoiceUrl + 'cancelOrder', {
-      params: {
-        id: id.toString()
-      }
+  cancelOrder(id: number): Observable<BaseResponse> {
+    return this.http.put<BaseResponse>(this.invoiceUrl + 'cancelOrder', {
+      invoiceId: id
     });
   }
 
-  getInvoices(pageNumber: number, pageSize: number): Observable<PagedResponse<Invoice[]>> {
-    return this.http.get<PagedResponse<Invoice[]>>(this.invoiceUrl + 'getInvoices', {
+  getInvoices(pageNumber: number, pageSize: number): Observable<InvoicesPagedResponse> {
+    return this.http.get<InvoicesPagedResponse>(this.invoiceUrl + 'getInvoices', {
       params: {
         pageNumber: pageNumber.toString(),
         pageSize: pageSize.toString()
@@ -41,8 +40,8 @@ export class InvoiceService {
     });
   }
 
-  getInvoice(invoiceId: number): Observable<MyResponse<Invoice>> {
-    return this.http.get<MyResponse<Invoice>>(this.invoiceUrl + 'getInvoice', {
+  getInvoice(invoiceId: number): Observable<Invoice> {
+    return this.http.get<Invoice>(this.invoiceUrl + 'getInvoice', {
       params: {
         invoiceId: invoiceId.toString()
       }
@@ -68,12 +67,10 @@ export class InvoiceService {
     });
   }
 
-  changeStatus(invoiceId: number, status: string): Observable<MyResponse<any>> {
-    return this.http.get<MyResponse<any>>(this.invoiceUrl + "changeStatus", {
-      params: {
-        invoiceId: invoiceId.toString(),
-        status
-      }
+  changeStatus(invoiceId: number, status: string): Observable<any> {
+    return this.http.put<any>(this.invoiceUrl + "changeStatus", {
+      invoiceId,
+      status
     })
   }
 }

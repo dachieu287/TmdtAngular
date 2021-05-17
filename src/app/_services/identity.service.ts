@@ -4,26 +4,28 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/internal/operators';
 import { API_URL } from '../_helpers/url-api';
-import { Authentication } from '../_models/authentication';
-import { MyResponse } from '../_models/my-response';
-import { TokenStorageService } from './token-storage.service';
+import { LoginResponse } from '../_responses/login.response';
+import { MyResponse } from '../_responses/my.response';
+import { User } from '../_models/user';
+import { LocalStorageService } from './local-storage.service';
+import { BaseResponse } from '../_responses/base.response';
 
 
-const AUTH_API = API_URL + "api/Authenticate/";
+const AUTH_API = API_URL + "api/Identities/";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class IdentityService {
 
   constructor(
     private http: HttpClient,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: LocalStorageService
   ) { }
 
-  login(username: string, password: string) : Observable<MyResponse<Authentication>> {
-    return this.http.post<MyResponse<any>>(AUTH_API + 'login', {
+  login(username: string, password: string) : Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(AUTH_API + 'login', {
       username: username,
       password: password
     });
@@ -67,8 +69,8 @@ export class AuthenticationService {
     return this.tokenStorage.getUser()?.username;
   }
 
-  getProfile(): Observable<MyResponse<any>> {
-    return this.http.get<MyResponse<any>>(AUTH_API + 'getProfile');
+  getProfile(): Observable<User> {
+    return this.http.get<User>(AUTH_API + 'getProfile');
   }
 
   updateProfile(name: string, email: string, phone: string): Observable<any> {
@@ -79,8 +81,8 @@ export class AuthenticationService {
     });
   }
 
-  changePassword(currentPassword: string, newPassword: string): Observable<MyResponse<any>> {
-    return this.http.post<MyResponse<any>>(AUTH_API + 'changePassword', {
+  changePassword(currentPassword: string, newPassword: string): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(AUTH_API + 'changePassword', {
       currentPassword: currentPassword,
       newPassword: newPassword
     });

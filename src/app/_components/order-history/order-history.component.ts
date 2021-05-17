@@ -23,9 +23,9 @@ export class OrderHistoryComponent implements OnInit {
   getOrderHistory(): void {
     this.invoiceService.orderHistory().subscribe(
       respone => {
-        this.invoices = respone.data;
+        this.invoices = respone;
         this.invoiceService.vietnameseStatus(this.invoices);
-        //console.log(respone);
+        console.log(this.invoices);
       }
     )
   }
@@ -35,7 +35,7 @@ export class OrderHistoryComponent implements OnInit {
       this.invoiceService.cancelOrder(id).subscribe(
         response => {
           if (response.succeeded) {
-            let invoice = this.invoices.find(i => i.id == response.data);
+            let invoice = this.invoices.find(i => i.id == id);
             invoice.status = this.invoiceStatus.cancelled;
             invoice.statusVietnamese = this.invoiceStatusVietnamese.cancelled;
           }

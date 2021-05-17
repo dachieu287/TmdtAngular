@@ -38,7 +38,7 @@ export class AdminProductEditComponent implements OnInit {
   getProduct(): void {
     this.productService.getProduct(this.productId).subscribe(
       response => {
-        const product = response.data;
+        const product = response;
         this.f.name.setValue(product.name);
         this.f.price.setValue(product.price);
         this.f.description.setValue(product.description);
@@ -49,9 +49,7 @@ export class AdminProductEditComponent implements OnInit {
   editProduct(): void {
     this.productService.editProduct(this.productId, this.f.name.value, this.f.price.value, this.f.description.value, this.file).subscribe(
       response => {
-        if (response.succeeded) {
-          this.router.navigateByUrl('/admin/products/detail/' + this.productId);
-        }
+        this.router.navigateByUrl('/admin/products/detail/' + this.productId);
       }
     );
   }

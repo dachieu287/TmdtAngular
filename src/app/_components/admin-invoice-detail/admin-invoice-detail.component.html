@@ -54,7 +54,7 @@
           <th scope="col" class="text-right">Đơn giá</th>
         </thead>
         <tbody>
-          <tr *ngFor="let detail of invoice?.details">
+          <tr *ngFor="let detail of invoice?.invoiceDetails">
             <td>{{ detail.productName }}</td>
             <td class="text-right">{{ detail.quantity }}</td>
             <td class="text-right">{{ detail.price | number}}</td>

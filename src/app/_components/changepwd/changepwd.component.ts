@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faKey, faLockOpen, faRedo } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 
 @Component({
   selector: 'app-changepwd',
@@ -16,7 +16,7 @@ export class ChangepwdComponent implements OnInit {
   form: FormGroup;
   
   constructor(
-    private authService: AuthenticationService
+    private authService: IdentityService
   ) { }
 
   ngOnInit(): void {

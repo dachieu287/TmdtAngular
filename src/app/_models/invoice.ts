@@ -8,7 +8,7 @@ export class Invoice {
     public status: string,
     public statusVietnamese: string,
     public user: User,
-    public details: InvoiceDetail[]
+    public invoiceDetails: InvoiceDetail[]
   ) {}
 }
 

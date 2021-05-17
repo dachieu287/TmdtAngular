@@ -17,11 +17,11 @@
       <tbody>
         <tr *ngFor="let invoice of invoices">
           <td class="text-center">{{ invoice.id }}</td>
-          <td>{{ invoice.orderDate | date:'HH:mm dd/MM/yyy'}}</td>
+          <td class="text-center">{{ invoice.orderDate | date:'HH:mm dd/MM/yyy'}}</td>
           <td>
             <table>
               <tbody>
-                <tr *ngFor="let detail of invoice.details">
+                <tr *ngFor="let detail of invoice.invoiceDetails">
                   <td style="column-width:300px;">{{ detail.productName }}</td>
                   <td class="text-right" style="column-width: 50px;">x{{ detail.quantity }}</td>
                   <td class="text-right" style="column-width: 100px;"><div >{{ detail.price | number }}</div></td>
@@ -29,8 +29,8 @@
               </tbody>
             </table>
           </td>
-          <td class="text-right">{{ invoice.totalPrice | currency:'VND' }}</td>
-          <td>{{ invoice.statusVietnamese }}</td>
+          <td class="text-center">{{ invoice.totalPrice | currency:'VND' }}</td>
+          <td class="text-center">{{ invoice.statusVietnamese }}</td>
           <td><button class="btn btn-danger" [disabled]="invoice.status !== 'Processing'" (click)="cancelOrder(invoice.id)">Hủy</button></td>
         </tr>
       </tbody>

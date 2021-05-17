@@ -37,10 +37,8 @@ export class AdminProductAddComponent implements OnInit {
   addProduct(): void {
     this.productService.addProduct(this.f.name.value, this.f.price.value, this.f.description.value, this.file).subscribe(
       response => {
-        if (response.succeeded) {
-          alert(response.message);
-          this.route.navigateByUrl("/admin/products");
-        }
+        alert("Thêm thành công");
+        this.route.navigateByUrl("/admin/products");
       }
     );
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Cart } from 'src/app/_models/cart';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { IdentityService } from 'src/app/_services/identity.service';
 import { CartService } from 'src/app/_services/cart.service';
 
 
@@ -18,12 +18,11 @@ export class HeaderComponent implements OnInit {
   username: string;
   isLogin = false;
 
-  carts: Cart[] = [];
   cartCount = 0;
   cartTotalPrice = 0;
 
   constructor(
-    private authService: AuthenticationService,
+    private authService: IdentityService,
     private cartServie: CartService
   ) { }
 
@@ -31,14 +30,9 @@ export class HeaderComponent implements OnInit {
     this.isLogin = this.authService.isLogin();
     this.username = this.authService.getUsername();
 
-    this.cartServie.Carts.subscribe(data => {
-      this.carts = data;
-      this.cartCount = 0;
-      this.cartTotalPrice = 0;
-      this.carts.forEach(element => {
-        this.cartCount += element.quantity;
-        this.cartTotalPrice += element.quantity * element.product.price;
-      });
+    this.cartServie.CartTotal.subscribe(response => {
+      this.cartCount = response ? response.totalItem : 0;
+      this.cartTotalPrice = response ? response.totalPrice : 0;
     });
 
     if (this.isLogin) {

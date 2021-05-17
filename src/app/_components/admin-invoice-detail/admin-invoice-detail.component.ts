@@ -33,14 +33,14 @@ export class AdminInvoiceDetailComponent implements OnInit {
   getInvoice(): void {
     this.invoiceService.getInvoice(this.invoiceId).subscribe(
       response => {
-        this.invoice = response.data;
+        this.invoice = response;
         this.invoiceService.vietnameseStatus([this.invoice]);
       }
     )
   }
 
   onChange() {
-    console.log(this.form.controls.status.value);
+    //console.log(this.form.controls.status.value);
     this.invoiceService.changeStatus(this.invoiceId, this.form.controls.status.value).subscribe();
   }
 }
